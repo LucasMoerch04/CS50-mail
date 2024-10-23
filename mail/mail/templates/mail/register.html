@@ -1,0 +1,33 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+
+{% block body %}
+
+    <h2>Register</h2>
+
+    {% if message %}
+        <div>{{ message }}</div>
+    {% endif %}
+
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <input class="form-input" type="email" name="email" placeholder="Email Address">
+        </div>
+        <div class="form-group">
+            <input class="form-input" type="password" name="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+            <input class="form-input" type="password" name="confirmation" placeholder="Confirm Password">
+        </div>
+        <input id="loginBtn" type="submit" value="Register">
+    </form>
+
+    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}

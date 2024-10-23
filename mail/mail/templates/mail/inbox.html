@@ -1,0 +1,43 @@
+{% extends "mail/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <h2 class="username">{{ request.user.email }}</h2>
+    <div class="nav">
+    <button class="navBtn" id="inbox">Inbox</button>
+    <button class="navBtn" id="compose">Compose</button>
+    <button class="navBtn" id="sent">Sent</button>
+    <button class="navBtn" id="archived">Archived</button>
+    <a class="logout" href="{% url 'logout' %}">Log Out</a>
+    </div>
+    <hr>
+
+    <div id="emails-view">
+        <div id="mails-container">
+            
+        </div>
+    </div>
+
+    <div id="compose-view" class="compose-view">
+        <form id="compose-form-form">
+            <h3 id="mailbox">New Email</h3>
+
+            <div class="compose-form">
+                <span class="label">From: </span><input disabled id="compose-sender" class="form-input" value="{{ request.user.email }}">
+            </div>
+            <div class="compose-form">
+                <span class="label">To: </span><input id="compose-recipients" class="form-input" placeholder="Recipients">
+            </div>
+            <div class="compose-form">
+                <span class="label">Subject: </span><input class="form-input" id="compose-subject" placeholder="Subject Title">
+            </div>
+            <button id="submit" class="navBtn" type="submit"/>Send mail</button>
+            
+            <textarea class="form-input" id="compose-body" placeholder="Body"></textarea>
+        </form>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'mail/inbox.js' %}"></script>
+{% endblock %}
